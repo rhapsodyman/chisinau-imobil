@@ -1,4 +1,5 @@
 {
+  "outputType": "excel",
   "category": ["apartment"],
   "minPrice": 35000,
   "maxPrice": 70000,

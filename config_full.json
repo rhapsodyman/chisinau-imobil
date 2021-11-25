@@ -1,9 +1,0 @@
-{
-  "category": ["apartment"],
-  "minPrice": 35000,
-  "maxPrice": 700000,
-  "apartmentType" : ["new", "old"],
-  "apartmentState": ["euro", "living","white"],
-  "rooms": ["1","2","3", "4"],
-  "offerType": ["sale","rent"]
-}

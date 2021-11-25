@@ -4,6 +4,10 @@ import os
 
 
 def write_results(headers, data, file_name, out_format='csv'):
+    out_dir = "output"
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
     if out_format == "excel":
         print("Writing to excel file....")
         wb = Workbook()
@@ -21,11 +25,10 @@ def write_results(headers, data, file_name, out_format='csv'):
                 cell.value = col
 
         print("Saving file....")
-        wb.save(os.path.join("output", file_name + ".xlsx"))
-
+        wb.save(os.path.join(out_dir, file_name + ".xlsx"))
 
     elif out_format == 'csv':
-        with open(os.path.join("output", file_name + '.csv'), 'w', encoding='UTF8', newline='') as o_file:
+        with open(os.path.join(out_dir, file_name + '.csv'), 'w', encoding='UTF8', newline='') as o_file:
             csv_writer = csv.writer(o_file)
             csv_writer.writerow(headers)
             csv_writer.writerows(data)

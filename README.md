@@ -11,10 +11,10 @@ Is done using ```config.json``` file
 * category - can only be ```apartment```
 * minPrice - min price to include
 * maxPrice - max price to include
-* apartmentType - can be ```new``` or ```old```
-* apartmentState - can be ```euro```, ```living``` or ```white```
-* rooms - number of rooms, can be ```1```, ```2```, ```3```, ```4```
-* offerType - can be ```sale``` or ```rent```
+* apartmentType - array, accepted values are:  [```"new"```, ```"old"```]
+* apartmentState - array, accepted values are: [```"euro"```, ```"living"```, ```"white"```]
+* rooms - array, accepted values are: [```"1"```, ```"2"```, ```"3"```, ```"4"```]
+* offerType - array, accepted values are: [```"sale"```,```"rent"```]
 
 
 #### Execution

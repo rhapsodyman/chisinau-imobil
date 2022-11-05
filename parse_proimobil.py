@@ -4,6 +4,7 @@ import urllib.parse
 
 import requests
 from bs4 import BeautifulSoup
+import re
 
 from output_helper import write_results
 
@@ -58,7 +59,12 @@ if __name__ == '__main__':
             #     new_price = 1
 
             link = 'https://proimobil.md' + item.find('a')['href']
-            price = item.find("a", class_='catCard__price').text
+            price = item.find("a", class_='catCard__price').text.replace('€', '').replace(' ', '').replace(',', '').strip()
+
+            if not re.match('\d+', price): # most likely is sold
+                continue
+
+
             address = item.find("div", class_='catCard__location').text.strip()
             region, street = address.split(",", 1)
 
@@ -67,7 +73,7 @@ if __name__ == '__main__':
             n_rooms = data[0].text
             area = data[2].text.replace('m2', '').strip()
 
-            meter_price = float(price.replace('€', '').replace(' ', '').replace(',', '').strip()) / float(area)
+            meter_price = float(price) / float(area)
 
             apartment_data = [region, street, price, n_rooms, area, meter_price, link]
             apartments.append(apartment_data)

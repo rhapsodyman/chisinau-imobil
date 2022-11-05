@@ -59,15 +59,20 @@ if __name__ == '__main__':
                 specs = item.find('div', class_='card-specs')
                 specs_list = specs.find_all('div', class_='small')
 
-                n_rooms = specs_list[0].text
-                area = specs_list[1].text.replace('m2', '').strip()
-                floor = specs_list[2].text
+                n_rooms = specs_list[0].find('b').text
+                area = specs_list[1].text.replace('m2', '').replace('м2', '').strip()
+                floor = specs_list[2].find('b').text
 
                 link = 'https://accesimobil.md' + item.find('a')['href']
                 price = item.find("div", class_='price').text.replace(u'\xa0', u'')
 
                 address = item.find("div", class_='street').text.strip()
-                region, street = address.split(" ", 1)
+
+                if " " in address:
+                    region, street = address.split(" ", 1)
+                else:
+                    region = street = address
+
 
                 meter_price = float(price.replace('€', '').replace(',', '').strip()) / float(area)
 
